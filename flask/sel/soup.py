@@ -45,6 +45,9 @@ def serve(soup, flavor, url, driver):
                 elif query['col'] == 'technical_specs':
                     l = soup.select_one(query['selector'])
                     scoop[query['col']] = str(l).replace('\n', '')
+                elif query['col'] == 'product_id':
+                    l = str(soup.select_one(query['selector'])['id'])
+                    scoop[query['col']] = abs(int(l.replace('post-', '')))
                 else:
                     l = soup.select_one(query['selector'])
                     scoop[query['col']] = l.text.replace('\n', '')

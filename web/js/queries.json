@@ -25,7 +25,12 @@
         "el": "query",
         "selector": "#post-31 > div > div > div.product-intro.col-lg-6 > p.h3 > a",
         "col": "parent_cat"
-      }
+      },
+    {
+      "el": "query",
+      "selector": "article",
+      "col": "product_id"
+    }
 
     ]
   }
