@@ -1,5 +1,7 @@
 import indexProxy from "/direct.js"
 
+let json_datas = {}
+
 async function Process(data){
     let url = window.location.protocol + "//" + window.location.hostname + ":7240/processing";
     $('#output').text("Ladling out Leeboy soup...")
@@ -24,6 +26,8 @@ function callback(data){
     let existing_bowl = $('#bowl').html()
     let new_bowl = existing_bowl + "<br/><br/>" + data
     $('#bowl').html(new_bowl)
+    json_datas[indexProxy.index] = data
+    sessionStorage.setItem("soup-"+indexProxy.index, data)
 }
 
 export default Process

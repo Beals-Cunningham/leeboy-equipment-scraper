@@ -12,18 +12,22 @@ var indexProxy = new Proxy(objIndex, {
             console.log("Soup pot is empty")
             $('#output').text( "Leeboy soup pot is empty (all pages have been scraped)\nMoving soup to database...")
             $('#canvas2').css('opacity', 1)
-            $.ajax({
-                url: window.location.protocol + "//" + window.location.hostname + ":7240/takeout",
-                type: 'POST',
-                dataType: 'json',
-                data: JSON.stringify({"soup": $('#bowl').html()}), 
-                contentType: 'application/json; charset=utf-8',
-                success: callback,
-                error: function (error) {
-                    $('#output').text = error
-                },
-                
-            })
+            for (let i = 0; i < sessionStorage.length; i++){
+                let key = sessionStorage.key(i)
+                if (key.includes("soup-")){
+                    $.ajax({
+                        url: window.location.protocol + "//" + window.location.hostname + ":7240/takeout",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: sessionStorage.getItem(key), 
+                        contentType: 'application/json; charset=utf-8',
+                        success: callback,
+                        error: function (error) {
+                            $('#output').text = error
+                        },
+                        
+                    })
+                }}
         }
         return true
     }
