@@ -8,4 +8,4 @@
 * Double-click `run.command` to start. If you don't see a bowl of soup, hard refresh (Cmd+Shift+R)
 * Wait for the magic to happen
 
-Author: [Joseph Hansen](https://github.com/josephhansen-bcss)https://github.com/josephhansen-bcss (josephclaytonhansen@gmail.com)
+Author: [Joseph Hansen](https://github.com/josephhansen-bcss) (josephclaytonhansen@gmail.com)
