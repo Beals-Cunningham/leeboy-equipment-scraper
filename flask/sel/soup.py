@@ -36,24 +36,27 @@ def serve(soup, flavor, url, driver):
         else:
             attrs = None
 
-        ladle = soup.find_all(el, id=id, class_=class_, attrs=attrs)
-        for slurp in ladle:
-            if query["col"] == 'eq_image':
-                scoop[query['col']] = slurp['src']
-            elif query["col"] == "title":
-                scoop[query['col']] = slurp.text
-            elif query['el'] == 'query':
+        if query['el'] == 'query':
                 if query['col'] == 'description':
                     ladle1 = soup.select_one(query['selector1'])
                     ladle2 = soup.select_one(query['selector2'])
-                    ladle = str(ladle1) + str(ladle2)
-                    scoop[query['col']] = ladle
+                    l = str(ladle1) + str(ladle2)
+                    scoop[query['col']] = l.replace('\n', '')
+                elif query['col'] == 'technical_specs':
+                    l = soup.select_one(query['selector'])
+                    scoop[query['col']] = str(l).replace('\n', '')
                 else:
-                    ladle = soup.select_one(query['selector'])
-                    scoop[query['col']] = ladle.text
-            else:
-                scoop[query['col']] = str(slurp)    
+                    l = soup.select_one(query['selector'])
+                    scoop[query['col']] = l.text.replace('\n', '')
+        
+        ladle = soup.find_all(el, id=id, class_=class_, attrs=attrs)
+        for slurp in ladle:
+            if query['el'] != 'query':
+                if query["col"] == 'eq_image':
+                    scoop[query['col']] = slurp['src']
+                elif query["col"] == "title":
+                    scoop[query['col']] = slurp.text
+            
                         
     spoon = {"data":scoop, "url":url}
     return spoon
-
