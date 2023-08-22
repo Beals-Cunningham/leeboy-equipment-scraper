@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="jq.js" type="module"></script>
+    <script src="direct.js" type="module"></script>
+    <script src="https://unpkg.com/@rive-app/canvas@2.1.0"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            const r = new rive.Rive({
+                src: 'http://localhost:7060/soup.riv',
+                canvas: document.getElementById("canvas"),
+                autoplay: true,
+                stateMachines: "idle",
+                onLoad: () => {
+                    r.resizeDrawingSurfaceToCanvas();
+                },
+            });
+        });
+    </script>
+</head>
+
+<body style="background-color:seashell;font-family:Helvetica, sans-serif;padding:2vw;overflow-x:hidden">
+    <h1>Leeboy Soup</h1>
+    <p>If something isn't loading, do a hard refresh (caching can interfere). If you don't see the
+        soup bowl, <strong>you need to hard refresh.</strong></p>
+        <p>It can be hard to tell at a glance if the page is stalled or if the Wood's Equipment page is just insanely slow (usually it's the latter.) <br/>You can check this in the Network tab of the Inspector. If the request named "incoming" is <code>(pending)</code>, everything is fine. Otherwise, hard refresh.</p>
+    <hr />
+    <h2 id="output"></h2>
+
+    <canvas id="canvas" style="width:500px;height:329px;"></canvas>
+    <canvas id="canvas2" style="width:500px;height:329px;opacity:0"></canvas>
+    <script>
+        const r = new rive.Rive({
+            src: 'http://localhost:7060/soup.riv',
+            canvas: document.getElementById("canvas"),
+            autoplay: true,
+            stateMachines: "idle",
+            onLoad: () => {
+                r.resizeDrawingSurfaceToCanvas();
+            },
+        });
+        const rr = new rive.Rive({
+            src: 'http://localhost:7060/go.riv',
+            canvas: document.getElementById("canvas2"),
+            autoplay: true,
+            stateMachines: "go",
+            onLoad: () => {
+                rr.resizeDrawingSurfaceToCanvas();
+            },
+        });
+    </script>
+    <pre
+        style="resize:both;background-color:#3f3d3d;color:blanchedalmond;font-size:.75rem;width:96vw;word-wrap:normal;text-wrap:balance;height:30vw;overflow-y:scroll;overflow-wrap:anywhere;overflow-x: hidden;"><code id = "bowl"></code></pre>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+open -a "Google Chrome" "http://localhost:7060" && cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) && npm i && npm start
