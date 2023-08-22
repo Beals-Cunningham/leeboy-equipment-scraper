@@ -2,32 +2,27 @@
     "leeboy": [
       {
         "el": "h1",
-        "class": "product_title",
+        "class": "entry-title",
         "col": "title"
       },
       {
         "el": "img",
-        "class": "wp-post-image",
-        "col": "image"
+        "class": "slick-current",
+        "col": "eq_image"
       },
       {
         "el": "div",
         "class": "woocommerce-product-details__short-description",
-        "col": "bullet_points"
+        "col": "parent_cat"
       },
       {
-        "el": "table",
-        "class": "woocommerce-product-attributes shop_attributes",
-        "col": "specs"
+        "el": "query",
+        "selector1": "article > div > div > div.product-intro.col-lg-6 > p:nth-child(4)",
+        "selector2": "article > div > div > div.product-intro.col-lg-6 > p:nth-child(5)"
       },
       {
-        "el": "span",
-        "class": "tagged_as",
-        "col":"tag"
-      },
-      {
-        "el": "requires-selenium",
-        "col": "pdf"
+        "el": "query",
+        "selector": "#specs > div > div"  
       }
     ]
   }

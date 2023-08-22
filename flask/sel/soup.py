@@ -2,7 +2,7 @@ import bs4, time, json, os, re
 
 path = os.path.join(os.getcwd(), "web", "js", "queries.json")
 with open(path) as f:
-    tractor_soup = json.load(f)
+    Leeboy_soup = json.load(f)
     f.close()
 
 def simmer(data, driver):
@@ -14,7 +14,7 @@ def simmer(data, driver):
 
 def serve(soup, flavor, url, driver):
     #this is the main processing function- find relevant data and dish it up
-    queries = tractor_soup[flavor]
+    queries = Leeboy_soup[flavor]
     scoop = {}
     
     for query in queries:
@@ -38,8 +38,19 @@ def serve(soup, flavor, url, driver):
 
         ladle = soup.find_all(el, id=id, class_=class_, attrs=attrs)
         for slurp in ladle:
-            if query["col"] == "title":
+            if query["col"] == 'eq_image':
+                scoop[query['col']] = slurp['src']
+            elif query["col"] == "title":
                 scoop[query['col']] = slurp.text
+            elif query['el'] == 'query':
+                if query['col'] == 'description':
+                    ladle1 = soup.select_one(query['selector1'])
+                    ladle2 = soup.select_one(query['selector2'])
+                    ladle = str(ladle1) + str(ladle2)
+                    scoop[query['col']] = ladle
+                else:
+                    ladle = soup.select_one(query['selector'])
+                    scoop[query['col']] = ladle.text
             else:
                 scoop[query['col']] = str(slurp)    
                         
