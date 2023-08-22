@@ -18,48 +18,52 @@ def serve(soup, flavor, url, driver):
     scoop = {}
     
     for query in queries:
-        print(query)
-        if 'el' in query:
-            el = query['el']
-        else:
-            el = None
-        if 'id' in query:
-            id = query['id']
-        else:
-            id = None
-        if 'class' in query:
-            class_ = query['class']
-        else:
-            class_ = None
-        if 'attrs' in query:
-            attrs = query['attrs']
-        else:
-            attrs = None
+        try:
+            print(query)
+            if 'el' in query:
+                el = query['el']
+            else:
+                el = None
+            if 'id' in query:
+                id = query['id']
+            else:
+                id = None
+            if 'class' in query:
+                class_ = query['class']
+            else:
+                class_ = None
+            if 'attrs' in query:
+                attrs = query['attrs']
+            else:
+                attrs = None
 
-        if query['el'] == 'query':
-                if query['col'] == 'description':
-                    ladle1 = soup.select_one(query['selector1'])
-                    ladle2 = soup.select_one(query['selector2'])
-                    l = str(ladle1) + str(ladle2)
-                    scoop[query['col']] = l.replace('\n', '')
-                elif query['col'] == 'technical_specs':
-                    l = soup.select_one(query['selector'])
-                    scoop[query['col']] = str(l).replace('\n', '')
-                elif query['col'] == 'product_id':
-                    l = str(soup.select_one(query['selector'])['id'])
-                    scoop[query['col']] = abs(int(l.replace('post-', '')))
-                else:
-                    l = soup.select_one(query['selector'])
-                    scoop[query['col']] = l.text.replace('\n', '')
-        
-        ladle = soup.find_all(el, id=id, class_=class_, attrs=attrs)
-        for slurp in ladle:
-            if query['el'] != 'query':
-                if query["col"] == 'eq_image':
-                    scoop[query['col']] = slurp['src']
-                elif query["col"] == "title":
-                    scoop[query['col']] = slurp.text
+            if query['el'] == 'query':
+                    if query['col'] == 'description':
+                        ladle1 = soup.select_one(query['selector1'])
+                        ladle2 = soup.select_one(query['selector2'])
+                        l = str(ladle1) + str(ladle2)
+                        scoop[query['col']] = l.replace('\n', '')
+                    elif query['col'] == 'technical_specs':
+                        l = soup.select_one(query['selector'])
+                        scoop[query['col']] = str(l).replace('\n', '')
+                    elif query['col'] == 'product_id':
+                        l = str(soup.select_one(query['selector'])['id'])
+                        scoop[query['col']] = abs(int(l.replace('post-', '')))
+                    else:
+                        l = soup.select_one(query['selector'])
+                        scoop[query['col']] = l.text.replace('\n', '')
             
-                        
+            ladle = soup.find_all(el, id=id, class_=class_, attrs=attrs)
+            for slurp in ladle:
+                if query['el'] != 'query':
+                    if query["col"] == 'eq_image':
+                        scoop[query['col']] = slurp['src']
+                    elif query["col"] == "title":
+                        scoop[query['col']] = slurp.text
+        
+        except Exception as e:  
+            print(e)
+            scoop[query['col']] = "Bad data"     
+                            
     spoon = {"data":scoop, "url":url}
     return spoon

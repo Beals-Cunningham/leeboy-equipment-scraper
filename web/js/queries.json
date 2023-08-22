@@ -23,7 +23,7 @@
       },
       {
         "el": "query",
-        "selector": "#post-31 > div > div > div.product-intro.col-lg-6 > p.h3 > a",
+        "selector": "article > div > div > div.product-intro.col-lg-6 > p.h3 > a",
         "col": "parent_cat"
       },
     {
