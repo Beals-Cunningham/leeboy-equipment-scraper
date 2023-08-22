@@ -29,7 +29,6 @@
     <h2 id="output"></h2>
 
     <canvas id="canvas" style="width:500px;height:329px;"></canvas>
-    <canvas id="canvas2" style="width:500px;height:329px;opacity:0"></canvas>
     <script>
         const r = new rive.Rive({
             src: 'http://localhost:7060/soup.riv',
@@ -38,15 +37,6 @@
             stateMachines: "idle",
             onLoad: () => {
                 r.resizeDrawingSurfaceToCanvas();
-            },
-        });
-        const rr = new rive.Rive({
-            src: 'http://localhost:7060/go.riv',
-            canvas: document.getElementById("canvas2"),
-            autoplay: true,
-            stateMachines: "go",
-            onLoad: () => {
-                rr.resizeDrawingSurfaceToCanvas();
             },
         });
     </script>

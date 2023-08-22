@@ -28,8 +28,6 @@ def box(data):
 
 
 def unpack(data, c):
-    print()
-    print(data)
     insert = data['data']
     title = insert['title']
     description = insert['description']
