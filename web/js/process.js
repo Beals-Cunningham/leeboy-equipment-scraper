@@ -4,7 +4,7 @@ let json_datas = {}
 
 async function Process(data){
     let url = window.location.protocol + "//" + window.location.hostname + ":7240/processing";
-    $('#output').text("Ladling out Leeboy soup...")
+    $('#output').text("Ladling out tractor soup...")
     $.ajax({
         url: url,
         type: 'POST',

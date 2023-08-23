@@ -2,7 +2,7 @@ import Process from "/process.js"
 
 async function Get(data, flavor){
     let url = window.location.protocol + "//" + window.location.hostname + ":7240/incoming";
-    $('#output').text("Stirring Leeboy soup...")
+    $('#output').text("Stirring tractor soup...")
     $.ajax({
         url: url,
         type: 'POST',

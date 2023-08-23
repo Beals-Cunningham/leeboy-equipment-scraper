@@ -10,7 +10,7 @@ var indexProxy = new Proxy(objIndex, {
             Get(pages[value]["url"], pages[value]["flavor"])}  
         catch(err){
             console.log("Soup pot is empty")
-            $('#output').text( "Leeboy soup pot is empty (all pages have been scraped)\nMoving soup to database...")
+            $('#output').text( "tractor soup pot is empty (all pages have been scraped)\nMoving soup to database...")
             for (let i = 0; i < sessionStorage.length; i++){
                 let key = sessionStorage.key(i)
                 if (key.includes("soup-")){
@@ -36,7 +36,7 @@ Get(pages[0]["url"], pages[0]["flavor"])
 
 function callback(data){
     console.log(data)
-    $('#output').text( "Leeboy soup moved to database")
+    $('#output').text( "tractor soup moved to database")
     $('#canvas2').css('opacity', 0)
 }
 
